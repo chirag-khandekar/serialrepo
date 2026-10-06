@@ -1,4 +1,4 @@
-name: Serialize Pipeline
+name: Test Serialize Pipeline
 
 on: 
   push: 
@@ -51,6 +51,7 @@ jobs:
         run: python job5.py
 
   myjob6: 
+    needs: [myjob4, myjob5]
     runs-on: ubuntu-latest
     steps:
       - name: checkout code6
