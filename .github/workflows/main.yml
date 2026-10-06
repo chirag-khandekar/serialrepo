@@ -1,1 +1,59 @@
+name: Serialize Pipeline
 
+on: 
+  push: 
+    branches: 
+      - main
+
+jobs:
+  myjob1: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code1
+        uses: actions/checkout@v7
+      - name: runjob1
+        run: python job1.py
+
+  myjob2:
+    needs: myjob1
+    runs-on: ubuntu-latest
+    steps: 
+      - name: checkout code2
+        uses: actions/checkout@v7
+      - name: run job2
+        run: python job2.py
+
+  myjob3: 
+    needs: myjob1
+    runs-on: ubuntu-latest
+    steps: 
+      - name: checkout code3
+        uses: actions/checkout@v7
+      - name: run job3
+        run: python job3.py
+
+  myjob4: 
+    needs: myjob2
+    runs-on: ubuntu-latest
+    steps: 
+      - name: checkout code4
+        uses: actions/checkout@v7
+      - name: run job4
+        run: python job4.py
+  
+  myjob5: 
+    needs: myjob3
+    runs-on: ubuntu-latest
+    steps: 
+      - name: checkout code5
+        uses: actions/checkout@v7
+      - name: run job5
+        run: python job5.py
+
+  myjob6: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code6
+        uses: actions/checkout@v7
+      - name: run code6
+        run: python job6.py
